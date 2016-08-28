@@ -43,6 +43,7 @@ $(document).ready(function(){
 				guessedNum.push(enteredNum);
 			}
 
+//Math.absolute - no need to use - and + at the same time, just use one of them.
 			event.preventDefault();
 			var enteredNum = $('#userGuess').val(),
 					enteredNum = +enteredNum;
