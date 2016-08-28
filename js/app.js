@@ -5,8 +5,11 @@ var counter,
 
 $(document).ready(function(){
 
+	generateNum();
+
 	function generateNum() {
 		secretNum = Math.floor((Math.random() * 100) + 1);
+		console.log(secretNum);
 		counter = 0;
 	}
 
@@ -16,10 +19,8 @@ $(document).ready(function(){
 		$('#count').text(counter);
 		$('#userGuess').val('');
 		$('#guessList li').remove();
-		guessedNum = []
+		guessedNum = [];
 	}
-
-	generateNum();
 
 	/*--- Display information modal box ---*/
   	$('.what').click(function(){
@@ -50,16 +51,16 @@ $(document).ready(function(){
 			if (isNaN(parseInt(enteredNum)) || enteredNum % 1 != 0 || enteredNum > 100 || enteredNum <= 0) {
 				$('#feedback').text('Please guess a number from 1-100');
 			} else if (guessedNum.indexOf(enteredNum) >= 0) {
-				$('#feedback').text('That number was already guess before.');
+				$('#feedback').text('That number was already guessed before.');
 			} else if (enteredNum === secretNum) {
 				$('#feedback').text('Correct!');
-		  } else if (enteredNum >= secretNum - 10 && enteredNum <= secretNum + 10) {
+		  } else if (Math.abs(secretNum-enteredNum) <= 10) {
 				$('#feedback').text('Very Hot!');
 				incorrectGuessedNumOperation();
-			} else if (enteredNum >= secretNum - 20 && enteredNum <= secretNum + 20) {
+			} else if (Math.abs(secretNum-enteredNum) <= 20) {
 				$('#feedback').text('Hot!');
 				incorrectGuessedNumOperation();
-			} else if (enteredNum >= secretNum - 30 && enteredNum <= secretNum + 30) {
+			} else if (Math.abs(secretNum-enteredNum) <= 30) {
 				$('#feedback').text('Getting Warm!');
 				incorrectGuessedNumOperation();
 			} else {
